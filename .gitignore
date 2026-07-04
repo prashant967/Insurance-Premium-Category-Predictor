@@ -1,0 +1,29 @@
+# Virtual Environment
+myenv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
+
+# Testing
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
