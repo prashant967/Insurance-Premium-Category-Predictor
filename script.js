@@ -1,6 +1,6 @@
 "use strict";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://insurance-premium-category-predictor-605u.onrender.com";
 const $ = (id) => document.getElementById(id);
 
 /* ------------------------------------------------------------------
