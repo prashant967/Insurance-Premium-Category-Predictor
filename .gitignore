@@ -1,4 +1,5 @@
 # Virtual Environment
+.venv/
 myenv/
 venv/
 env/
@@ -17,9 +18,6 @@ __pycache__/
 # IDE
 .vscode/
 .idea/
-
-# Streamlit
-.streamlit/
 
 # Testing
 .pytest_cache/

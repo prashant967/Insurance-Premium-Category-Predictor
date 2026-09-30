@@ -1,6 +1,6 @@
 # Insurance Premium Category Predictor
 
-A Machine Learning-based web application that predicts an individual's **Insurance Premium Category** (**Low**, **Medium**, or **High**) based on health, lifestyle, and demographic information. The project integrates a **Scikit-learn** model with a **FastAPI** backend and a **Streamlit** frontend to deliver real-time predictions with confidence scores and probability distributions.
+A Machine Learning-based API that predicts an individual's **Insurance Premium Category** (**Low**, **Medium**, or **High**) based on health, lifestyle, and demographic information. The project integrates a **Scikit-learn** model with a **FastAPI** backend to deliver real-time predictions with confidence scores and probability distributions.
 
 ---
 
@@ -13,7 +13,6 @@ A Machine Learning-based web application that predicts an individual's **Insuran
 - Displays confidence score for predictions
 - Shows probability distribution for all premium categories
 - REST API built with FastAPI
-- Interactive and user-friendly Streamlit interface
 - Modular project structure for easy maintenance
 - Ready for Dockerization and cloud deployment
 
@@ -26,7 +25,6 @@ A Machine Learning-based web application that predicts an individual's **Insuran
 | Language | Python |
 | Machine Learning | Scikit-learn, Pandas, NumPy |
 | Backend | FastAPI |
-| Frontend | Streamlit |
 | Model Serialization | Pickle |
 | API Testing | Swagger UI, Postman |
 | Version Control | Git & GitHub |
@@ -45,7 +43,6 @@ Insurance-Premium-Prediction/
 ├── schema/
 │   └── user_input.py
 │
-├── frontend.py
 ├── main.py
 ├── requirements.txt
 ├── .gitignore
@@ -134,12 +131,6 @@ FastAPI Documentation:
 
 ```
 http://127.0.0.1:8000/docs
-```
-
-### Run the Streamlit Frontend
-
-```bash
-streamlit run frontend.py
 ```
 
 ---

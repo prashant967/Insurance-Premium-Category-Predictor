@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InsuranceAI – Premium Category Predictor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/></svg><span><strong>InsuranceAI</strong><small>Premium Predictor</small></span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#predict">Predict</a><a href="#status">API Status</a>
+      <span class="pill" id="navStatus" role="status" aria-live="polite"><i class="dot"></i><span>Checking API…</span></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <h1>Predict Your Insurance<br>Premium Category with AI</h1>
+      <p class="sub">Get an AI-powered estimate of your insurance premium category based on your demographic, financial and lifestyle information.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="#predict">Start Prediction</a>
+      </div>
+    </div>
+    <svg class="illus" viewBox="0 0 400 340" role="img" aria-label="Shield with analytics chart representing AI insurance prediction">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2457e6"/><stop offset="1" stop-color="#12c2c9"/></linearGradient></defs>
+      <circle cx="200" cy="170" r="150" fill="none" stroke="#ffffff22" stroke-dasharray="4 8"/>
+      <circle cx="200" cy="170" r="110" fill="none" stroke="#ffffff18"/>
+      <path d="M200 40 L290 75 V160 C290 220 250 262 200 285 C150 262 110 220 110 160 V75 Z" fill="url(#g)"/>
+      <path d="M200 40 L290 75 V160 C290 220 250 262 200 285 Z" fill="#00000022"/>
+      <g stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="150,190 180,160 205,178 245,120"/></g>
+      <g fill="#fff"><circle cx="150" cy="190" r="6"/><circle cx="180" cy="160" r="6"/><circle cx="205" cy="178" r="6"/><circle cx="245" cy="120" r="6"/></g>
+      <g class="float"><rect x="18" y="70" width="96" height="46" rx="12" fill="#ffffff14" stroke="#ffffff33"/><text x="66" y="98" fill="#fff" font-size="15" text-anchor="middle">Data</text></g>
+      <g class="float d2"><rect x="290" y="210" width="96" height="46" rx="12" fill="#ffffff14" stroke="#ffffff33"/><text x="338" y="238" fill="#fff" font-size="15" text-anchor="middle">AI Model</text></g>
+      <g class="float d3"><rect x="292" y="40" width="90" height="46" rx="12" fill="#ffffff14" stroke="#ffffff33"/><text x="337" y="68" fill="#fff" font-size="15" text-anchor="middle">Risk</text></g>
+    </svg>
+  </div>
+</section>
+
+<section class="section" id="predict">
+  <div class="container">
+    <div class="card form-card">
+      <h2>Insurance Profile</h2>
+      <p class="muted">Enter your details to generate an AI-powered premium category prediction.</p>
+
+      <form id="predictForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" min="1" max="100" placeholder="e.g. 28" inputmode="numeric">
+            <span class="err" id="err-age" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" min="1" step="0.1" placeholder="e.g. 70" inputmode="decimal">
+            <span class="err" id="err-weight" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" min="1" step="0.1" placeholder="e.g. 172" inputmode="decimal">
+            <span class="err" id="err-height" role="alert"></span>
+          </div>
+          <div class="field">
+            <span class="label">Your BMI</span>
+            <div class="bmi" aria-live="polite"><strong id="bmiValue">--</strong><small id="bmiLabel">Enter weight and height</small></div>
+          </div>
+          <div class="field">
+            <label for="income_lpa">Annual Income (LPA)</label>
+            <div class="prefix"><span aria-hidden="true">₹</span><input type="number" id="income_lpa" min="0.1" step="0.1" placeholder="e.g. 8.5" inputmode="decimal"></div>
+            <span class="err" id="err-income_lpa" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="Enter your city" autocomplete="address-level2">
+            <span class="err" id="err-city" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="occupation">Occupation</label>
+            <select id="occupation">
+              <option value="">Select occupation</option>
+              <option value="student">Student</option>
+              <option value="private_job">Private Job</option>
+              <option value="government_job">Government Job</option>
+              <option value="business_owner">Business Owner</option>
+              <option value="freelancer">Freelancer / Self Employed</option>
+              <option value="retired">Retired</option>
+              <option value="unemployed">Unemployed</option>
+            </select>
+            <span class="err" id="err-occupation" role="alert"></span>
+          </div>
+          <fieldset class="field smoker">
+            <legend>Smoking</legend>
+            <label class="choice"><input type="radio" name="smoker" value="false" checked><span>Non-Smoker</span></label>
+            <label class="choice"><input type="radio" name="smoker" value="true"><span>Smoker</span></label>
+          </fieldset>
+        </div>
+
+        <div id="errorBox" class="error-box" role="alert" hidden></div>
+        <button type="submit" class="btn primary big" id="predictBtn">
+          <span class="spinner" aria-hidden="true"></span><span id="btnText">Predict Premium Category</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="result" class="result" hidden aria-live="polite">
+      <h2>Your Prediction</h2>
+      <div class="result-grid">
+        <div class="card pred-card" id="predCard">
+          <p class="muted">Predicted premium category</p>
+          <div class="badge" id="predBadge"><span id="predText"></span></div>
+          <div class="ring-wrap" id="ringWrap">
+            <svg viewBox="0 0 120 120" class="ring" aria-hidden="true"><circle cx="60" cy="60" r="52" class="track"/><circle cx="60" cy="60" r="52" class="bar" id="ringBar"/></svg>
+            <div class="ring-text"><strong id="confText">0%</strong><small>Confidence</small></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Probabilities</h3>
+          <div id="probs"></div>
+          <p class="muted small" id="probNote" hidden>The backend response did not include confidence or probability values.</p>
+        </div>
+        <div class="card">
+          <h3>Profile Summary</h3>
+          <dl class="summary" id="summary"></dl>
+        </div>
+      </div>
+      <button type="button" class="btn ghost dark" id="resetBtn">Start over</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="status">
+  <div class="container narrow">
+    <div class="card">
+      <h2>System Status</h2>
+      <ul class="status-list" aria-live="polite">
+        <li>Frontend <span class="pill ok"><i class="dot"></i>Online</span></li>
+        <li>FastAPI <span class="pill" id="stApi"><i class="dot"></i><span>Checking…</span></span></li>
+        <li>ML Model <span class="pill" id="stModel"><i class="dot"></i><span>Checking…</span></span></li>
+      </ul>
+      <p class="muted small" id="versionText"></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <strong>InsuranceAI</strong>
+    <p>AI-Powered Insurance Premium Category Prediction</p>
+    <p class="small">Built with: Python • FastAPI • Scikit-learn • JavaScript</p>
+    <p class="small">© 2026 InsuranceAI</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

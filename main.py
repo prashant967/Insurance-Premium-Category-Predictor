@@ -2,12 +2,24 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from model.predict import predict_output, Modelversion
 from schema.user_input import UserInput
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
-        
+
+# Allow frontend to communicate with backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 @app.get('/')
 def root():
-    return {"message": "Welcome to the Insurance Premium Prediction API!"}  
+    return {"message": "Welcome to the Insurance Premium Prediction API!"}
 
 @app.get('/health')
 def health_check():
